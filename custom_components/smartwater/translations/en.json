@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SmartWater Login",
+        "description": "Enter your SmartWater app credentials",
+        "data": {
+          "email": "Email",
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid email or password",
+      "cannot_connect": "Cannot connect to SmartWater servers",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "SmartWater account already configured"
+    }
+  }
+}
