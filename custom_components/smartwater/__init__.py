@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import CONF_EMAIL, CONF_PASSWORD, CONF_UPDATE_INTERVAL, DEFAULT_UPDATE_INTERVAL, DOMAIN
+from .const import CONF_EMAIL, CONF_PASSWORD, DEFAULT_UPDATE_INTERVAL, DOMAIN
 from .coordinator import SmartWaterCoordinator
 from .firebase_client import SmartWaterFirebaseClient
 
@@ -35,7 +35,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass,
         client,
         entry.entry_id,
-        entry.options.get(CONF_UPDATE_INTERVAL, DEFAULT_UPDATE_INTERVAL),
+        DEFAULT_UPDATE_INTERVAL,
     )
     await coordinator.async_config_entry_first_refresh()
 

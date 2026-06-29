@@ -92,7 +92,8 @@ class SmartWaterFirebaseClient:
     async def get_gateways(self) -> list[dict]:
         """Return all gateways owned by or shared with this user."""
         owned = await self._query_gateways(f"members.{self._uid}.enabled", True)
-        shared = await self._query_gateways(f"viewers.{self._email}.enabled", True)
+        # Email contains '.' and '@' which are special chars in Firestore field paths — must backtick-escape.
+        shared = await self._query_gateways(f"viewers.`{self._email}`.enabled", True)
         seen = {gw["_id"] for gw in owned}
         return owned + [gw for gw in shared if gw["_id"] not in seen]
 
