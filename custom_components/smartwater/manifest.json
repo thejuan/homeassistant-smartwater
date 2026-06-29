@@ -1,0 +1,13 @@
+{
+  "domain": "smartwater",
+  "name": "SmartWater",
+  "codeowners": ["@thejuan"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/thejuan/homeassistant-smartwater",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/thejuan/homeassistant-smartwater/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
