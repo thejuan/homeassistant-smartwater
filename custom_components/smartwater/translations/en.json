@@ -3,9 +3,16 @@
     "step": {
       "user": {
         "title": "SmartWater Login",
-        "description": "Enter your SmartWater app credentials",
+        "description": "Enter your SmartWater app credentials. Your password is stored in Home Assistant's config entry (same security level as all HA integrations).",
         "data": {
           "email": "Email",
+          "password": "Password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate SmartWater",
+        "description": "Re-enter your password for {email}.",
+        "data": {
           "password": "Password"
         }
       }
@@ -16,7 +23,8 @@
       "unknown": "Unexpected error"
     },
     "abort": {
-      "already_configured": "SmartWater account already configured"
+      "already_configured": "SmartWater account already configured",
+      "reauth_successful": "Re-authentication successful"
     }
   }
 }

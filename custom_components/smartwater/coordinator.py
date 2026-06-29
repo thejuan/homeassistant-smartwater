@@ -7,6 +7,7 @@ from typing import Any
 
 import aiohttp
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import DOMAIN
@@ -41,6 +42,12 @@ class SmartWaterCoordinator(DataUpdateCoordinator):
                 _LOGGER.debug("Token expired, refreshing...")
                 try:
                     await self.client.refresh_auth()
+                except aiohttp.ClientResponseError as refresh_err:
+                    if refresh_err.status in (400, 401):
+                        raise ConfigEntryAuthFailed(
+                            "SmartWater credentials revoked — please re-authenticate"
+                        ) from refresh_err
+                    raise UpdateFailed(f"Token refresh failed: {refresh_err}") from refresh_err
                 except Exception as refresh_err:
                     raise UpdateFailed("Token refresh failed") from refresh_err
                 try:
